@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("button").click(function () {
+//                $.ajax({
+//                    url : "http://services.odata.org/V3/OData/OData.svc/Products?$select=Name,Price",
+//                    //dataType : json,
+//                    /* stoped in jquery 1.5.1+
+//                    xhrFields: {
+//                        withCredentials: false
+//                     },
+//                     */
+//                    success : function(data){
+//                        console.log("ajax odata sample service :");
+//                        console.log("--------------------");
+//                        console.log(data);
+//                    }
+//                });
+                $.get( 'http://services.odata.org/V4/Northwind/Northwind.svc/Products?$select=ProductName').then(function(data){
+                    console.log("get differed using then :");
+                    console.log("------------------");
+                    console.log(data);
+                } );
+            });
+        });
+    </script>
+</head>
+<body>
+
+<div id="div1"><h2>Let jQuery AJAX Change This Text</h2></div>
+
+<button>Get External Content</button>
+
+</body>
+</html>
