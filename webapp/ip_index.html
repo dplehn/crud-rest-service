@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+        h1 { color: green; }
+        body {
+            font-family: arial;
+        }
+        #result {
+            font-weight: bold;
+        }
+        button {
+            color: coral;
+            background: black;
+            border-left-width: 10px;
+            border-left-color: red;
+        }
+
+    </style>
+</head>
+<body>
+
+<button>Get IP address</button>
+<div>
+    <span>My IP address:</span>
+    <span id='result'></span>
+</div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+<script>
+
+    $('button').click(function () {
+        // service url
+        var url = 'http://ip.jsontest.com/?callback=processJSON';
+
+        $.ajax({
+            url: url,
+            jsonpCallback: 'processJSON',
+            dataType: 'jsonp',
+            success: function (result) {
+                // process result
+                console.log(result);
+                $('#result').html(result.ip);
+            },
+            error: function (e) {
+                // log error in browser
+                console.log(e.message);
+            }
+        });
+    });
+
+</script>
+
+</body>
+</html>
