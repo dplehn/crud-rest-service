@@ -58,7 +58,7 @@ sap.ui.define([
 				//store new object: get all Data as array from model, push new entry, set data to the model again
 				var aData = this.getData();
 				aData.push(data);
-				this.setData(aData);
+				this.(aData);
 			}
 		}
 	});
