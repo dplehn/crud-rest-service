@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="js/prettyPrint.js" type="text/javascript"></script>
     <style>
 
         h1 { color: green; }
@@ -35,16 +36,20 @@
 
     $('button').click(function () {
         // service url
-        var url = 'http://services.odata.org/V4/TripPinService/People/?$format=json';
+        //var url = 'http://services.odata.org/V4/TripPinService/People/?$format=json';
+        var url = 'https://SAPES4.SAPDEVCENTER.COM:443/sap/opu/odata/iwbep/GWSAMPLE_BASIC/ProductSet/?$format=json';
 
         $.ajax({
             url: url,
             jsonpCallback: 'processJSON',
             //dataType: 'jsonp',
+            headers: {
+                "Authorization": "Basic " + btoa("P1940294678" + ":" + "gateway99!")
+            },
             success: function (result) {
-                // process result
-                console.log(result.value[0].FirstName);
-                $('#result').html(result.value[0].FirstName);
+                console.log(result);
+                //$('#result').html("success: Bitte Log kontrollieren");
+                $('#result').html(prettyPrint(result));
             },
             error: function (e) {
                 // log error in browser
